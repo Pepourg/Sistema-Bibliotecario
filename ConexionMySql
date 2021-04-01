@@ -1,0 +1,47 @@
+
+package login_register_design;
+
+import com.mysql.jdbc.jdbc2.optional.MysqlDataSource;
+import java.sql.Connection;
+//import com.sun.jdi.connect.spi.Connection;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.sql.SQLException;
+
+
+public class ConexionMySql {
+    
+    private static String  servername   = "localhost";
+    private static String  username     = "root";
+    private static String  dbname      = "usuarios_biblioteca";
+    private static Integer portnumber  = 3306;
+    private static String  password     = "";
+    
+    
+    public static Connection getConnection(){
+        
+        Connection conexion = null;
+        
+        MysqlDataSource datasource = new MysqlDataSource(); 
+        
+        datasource.setServerName(servername);
+        datasource.setUser(username);
+        datasource.setPassword(password);
+        datasource.setDatabaseName(dbname);
+        datasource.setPortNumber(portnumber);
+        
+         try {
+            conexion = (Connection) datasource.getConnection();
+        } catch (SQLException ex) {
+            Logger.getLogger(" Get Connection -> " + ConexionMySql.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        return conexion;
+        
+    }
+    
+    
+    
+}
